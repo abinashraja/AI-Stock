@@ -1,0 +1,21 @@
+# Secret & Environment files (DO NOT COMMIT)
+.env
+.env.*
+.streamlit/secrets.toml
+
+# Python Cache & Bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Operating System & IDE Files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Temporary / Agent Scratch Files
+.agents/
+scratch/

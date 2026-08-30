@@ -1,0 +1,76 @@
+# STOCK DECISION ENGINE — POSITIONAL / SWING TRADE (NOT INTRADAY)
+
+## SUPPLIED DATA FOR {ticker} ({company})
+Current Price: {current_price}
+20 SMA: {sma_20}
+50 SMA: {sma_50}
+100 SMA: {sma_100}
+200 SMA: {sma_200}
+RSI (14): {rsi}
+MACD: {macd}
+
+Revenue Growth: {rev_growth}
+Profit Growth: {profit_growth}
+EPS Growth: {eps_growth}
+ROE: {roe}
+ROCE: {roce}
+Debt to Equity: {debt_eq}  ← already converted to ratio e.g. 1.56x
+PEG Ratio: {peg}
+P/E Ratio: {pe}
+Sector: {sector}
+Analyst Target: {target_price}
+
+## USER'S INVESTMENT HORIZON: {time_horizon}
+Tailor entry, stop loss, and targets specifically for this holding period.
+- 1 Month: Tighter stop loss (3-5%), smaller target based on short-term momentum.
+- 3 Months: Moderate stop (5-8%), target based on next resistance or SMA.
+- 6 Months: Wider stop (8-12%), target based on fundamentals and analyst price target.
+- 1 Year: Widest stop (10-15%), target based on long-term valuation and earnings growth.
+
+---
+
+## DECISION LOGIC (apply in order)
+
+### STEP 1 — Long-Term Trend
+- Price > 200 SMA = BULLISH → Consider BUY
+- Price < 200 SMA = BEARISH → Decision is WAIT. Do not suggest buying now.
+
+### STEP 2 — If BEARISH (Price < 200 SMA):
+- Decision = WAIT
+- Entry = The 200 SMA value (only buy if price closes ABOVE this)
+- Stop Loss = 5% below the Entry (must be BELOW entry price)
+- Target = Entry + (2 × Risk). Target must be ABOVE entry.
+
+### STEP 3 — If BULLISH (Price > 200 SMA):
+- Decision = BUY NOW or BUY ON DIP
+- Entry = Current price if RSI < 65. If RSI > 65, suggest waiting for a dip to 50 SMA.
+- Stop Loss = Below 50 SMA or recent swing low (must be BELOW entry)
+- Target = Analyst target or next major resistance (must be ABOVE entry, R:R >= 2)
+
+### STRICT MATH RULES — NEVER VIOLATE:
+1. Stop Loss MUST be BELOW Entry price
+2. Target MUST be ABOVE Entry price
+3. Risk/Reward = (Target − Entry) ÷ (Entry − Stop Loss) must be ≥ 2.0
+4. This is NOT intraday. Never suggest holding for a few hours or one day.
+5. Holding period MUST match the user's selected Investment Horizon: {time_horizon}
+
+---
+
+## OUTPUT FORMAT
+
+Return ONLY this block with real ₹ numbers. Never output N/A for price fields:
+
+* **🚦 Decision:** [BUY NOW / BUY ON DIP / WAIT / AVOID]
+
+* **🎯 Entry:** ₹[specific price]
+
+* **🛑 Stop Loss:** ₹[must be BELOW entry]
+
+* **🎯 Target:** ₹[must be ABOVE entry, R:R ≥ 2]
+
+* **⏳ Holding Period:** [{time_horizon}]
+
+* **📊 Why?**
+  * **Trend:** [one line: price vs 200 SMA]
+  * **Fundamentals:** [one line: debt / growth / valuation]
+  * **Action:** [one clear instruction with exact ₹ level to watch]
