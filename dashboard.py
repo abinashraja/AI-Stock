@@ -50,7 +50,9 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
 
 * { font-family: 'Inter', sans-serif !important; }
-#MainMenu, header, footer { visibility: hidden; }
+footer { visibility: hidden; }
+/* Keep sidebar toggle always visible */
+[data-testid="collapsedControl"] { display: flex !important; visibility: visible !important; }
 
 .stApp {
     background: linear-gradient(135deg, #0a0e1a 0%, #0d1b2a 50%, #0a0e1a 100%);

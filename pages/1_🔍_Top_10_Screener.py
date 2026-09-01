@@ -49,7 +49,9 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
 * { font-family: 'Inter', sans-serif !important; }
-#MainMenu, header, footer { visibility: hidden; }
+footer { visibility: hidden; }
+/* Keep sidebar toggle always visible */
+[data-testid="collapsedControl"] { display: flex !important; visibility: visible !important; }
 .stApp { background: linear-gradient(135deg,#0a0e1a 0%,#0d1b2a 50%,#0a0e1a 100%); color:#e2e8f0; }
 .block-container { padding:0.8rem 1.5rem !important; max-width:100% !important; }
 [data-testid="stSidebar"] { background:linear-gradient(180deg,#0d1b2a,#111827) !important; border-right:1px solid #1e3a5f; }
@@ -73,9 +75,9 @@ hr { border-color:#1e3a5f !important; margin:0.5rem 0 !important; }
 NIFTY500_TICKERS = [
     # Banking & Finance
     "HDFCBANK.NS","ICICIBANK.NS","KOTAKBANK.NS","AXISBANK.NS","SBIN.NS","INDUSINDBK.NS",
-    "BANDHANBNK.NS","FEDERALBNK.NS","IDFCFIRSTB.NS","PNB.NS","BANKBARODA.NS","CANARABANK.NS",
+    "BANDHANBNK.NS","FEDERALBNK.NS","IDFCFIRSTB.NS","PNB.NS","BANKBARODA.NS","CANBK.NS",
     "UNIONBANK.NS","CENTRALBK.NS","UCOBANK.NS","MAHABANK.NS","J&KBANK.NS","KARURVYSYA.NS",
-    "DCBBANK.NS","RBLBANK.NS","EQUITASBNK.NS","SURYODAY.NS","UJJIVAN.NS","AUBANK.NS","ESAFSFB.NS",
+    "DCBBANK.NS","RBLBANK.NS","EQUITASBNK.NS","SURYODAY.NS","UJJIVANSFB.NS","AUBANK.NS","ESAFSFB.NS",
     # NBFC / Finance
     "BAJFINANCE.NS","BAJAJFINSV.NS","LICHSGFIN.NS","MUTHOOTFIN.NS","MANAPPURAM.NS",
     "PNBHOUSING.NS","CANFINHOME.NS","AAVAS.NS","HOMEFIRST.NS","CHOLAFIN.NS","M&MFIN.NS",
